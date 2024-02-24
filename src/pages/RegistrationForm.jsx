@@ -1,29 +1,31 @@
+// RegistrationForm.js
+
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 
 const RegistrationForm = () => {
-  // Define state variables for form fields
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
     email: '',
     password: ''
   });
 
-  // Handle form field changes
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  // Handle form submission
+  const navigate = useNavigate();
+
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Perform form submission logic, e.g., send data to backend
-    console.log('Form submitted:', formData);
-    // Clear form fields after submission
+    // Save user data to local storage
+    localStorage.setItem('userData', JSON.stringify(formData));
+    localStorage.setItem('isLoggedIn', 'true');
+    navigate('/dashboard')
+    // Clear form fields after registration
     setFormData({
-      firstName: '',
-      lastName: '',
       email: '',
       password: ''
     });
@@ -33,28 +35,6 @@ const RegistrationForm = () => {
     <div>
       <h2>Registration Form</h2>
       <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="firstName">First Name:</label>
-          <input
-            type="text"
-            id="firstName"
-            name="firstName"
-            value={formData.firstName}
-            onChange={handleInputChange}
-            required
-          />
-        </div>
-        <div>
-          <label htmlFor="lastName">Last Name:</label>
-          <input
-            type="text"
-            id="lastName"
-            name="lastName"
-            value={formData.lastName}
-            onChange={handleInputChange}
-            required
-          />
-        </div>
         <div>
           <label htmlFor="email">Email:</label>
           <input
