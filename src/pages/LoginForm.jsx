@@ -1,13 +1,14 @@
 // LoginForm.js
 
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const LoginForm = () => {
   const [formData, setFormData] = useState({
     email: '',
     password: ''
   });
-
+  const navigate = useNavigate();
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -22,7 +23,8 @@ const LoginForm = () => {
       // Check if email and password match
       if (userData.email === formData.email && userData.password === formData.password) {
         localStorage.setItem('isLoggedIn', 'true');
-        alert('Login successful!');
+        navigate('/dashboard')
+
         // Redirect or perform any other action for successful login
       } else {
         alert('Invalid email or password.');

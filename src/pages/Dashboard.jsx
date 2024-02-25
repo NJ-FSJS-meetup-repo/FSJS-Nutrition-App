@@ -13,12 +13,14 @@ const Dashboard = () => {
     <div className="dashboard">
       <h1>Nutrition App Dashboard</h1>
       <div className="button-container">
-        <button className="dashboard-button">Food List</button>
-        <button className="dashboard-button">Food Search</button>
-        <button className="dashboard-button">Food Filter</button>
-        <button className="dashboard-button">Build Profile</button>
+        <ul>
+        <li><button className="dashboard-button">Food List</button></li>
+        <li><button className="dashboard-button">Food Search</button></li>
+        <li><button className="dashboard-button">NutritionAI</button></li>
+        <li><button className="dashboard-button">Build Profile</button></li>
         {/* Attach the handleLogout function to the onClick event of this button */}
-        <button className="dashboard-button" onClick={handleLogout}>Log Out</button>
+        <li><button className="dashboard-button" onClick={handleLogout}>Log Out</button></li>
+        </ul>
       </div>
     </div>
   ); 
